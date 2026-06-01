@@ -7,6 +7,9 @@
 - **Environment Templates**: Replaced live `.env` and `.ovpn` files with `.example` templates.
 - **Dockerfile Hardening**: Replaced hardcoded passwords in the Linux challenge with Docker build arguments.
 - **Improved .gitignore**: Added comprehensive rules to prevent accidental leaks of flags and session data.
+
+### 🏗️ Structural Refactor
+- **Logical Reorganization**: Moved infrastructure to `core/` and challenges to `challenges/`.
 - **Modular Challenges**: Refactored challenges to be standalone and modular, simplifying future additions.
 - **Consolidation**: Removed redundant challenge definitions and duplicate scripts.
 
