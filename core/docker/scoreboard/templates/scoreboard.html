@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FEIT CTF - Scoreboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #1a1a2e; color: #eee; }
+        .container { background: #16213e; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        h1 { text-align: center; color: #0f3460; background: #e94560; padding: 10px; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #0f3460; }
+        th { background: #0f3460; color: #e94560; }
+        tr:hover { background: #1a1a2e; }
+        .rank-1 { color: gold; font-weight: bold; }
+        .rank-2 { color: silver; font-weight: bold; }
+        .rank-3 { color: #cd7f32; font-weight: bold; }
+        .nav { text-align: center; margin-bottom: 20px; }
+        .nav a { color: #e94560; margin: 0 10px; text-decoration: none; }
+        .nav a:hover { text-decoration: underline; }
+        .recent { margin-top: 30px; }
+        .recent h3 { color: #e94560; }
+        .recent-item { padding: 5px 0; border-bottom: 1px solid #0f3460; font-size: 0.9em; }
+        #auto-refresh { text-align: center; color: #666; font-size: 0.8em; margin-top: 10px; }
+    </style>
+    <script>
+        // Auto-refresh every 30 seconds
+        setTimeout(function(){ location.reload(); }, 30000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>FEIT CTF Scoreboard</h1>
+        <div class="nav">
+            <a href="/scoreboard">Scoreboard</a>
+            <a href="/login">Login</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Points</th>
+                    <th>Flags Captured</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <td class="rank-{{ loop.index }}">{{ loop.index }}</td>
+                    <td>{{ score.team_name }}</td>
+                    <td>{{ score.total_points }}</td>
+                    <td>{{ score.flags_captured }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="4" style="text-align:center;">No submissions yet. Start hacking!</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="recent">
+            <h3>Recent Captures</h3>
+            {% for item in recent %}
+            <div class="recent-item">
+                <strong>{{ item.team_name }}</strong> scored {{ item.points_awarded }} points
+                <span style="color:#666;">- {{ item.submitted_at }}</span>
+            </div>
+            {% else %}
+            <p style="color:#666;">No captures yet.</p>
+            {% endfor %}
+        </div>
+
+        <div id="auto-refresh">Auto-refreshes every 30 seconds</div>
+    </div>
+</body>
+</html>

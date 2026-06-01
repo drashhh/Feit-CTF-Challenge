@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEIT Cyber Security Challenge - Team 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Debug: FEIT{team1_web_source_flag_BB39} -->
+    <div class="container">
+        <header>
+            <h1>FEIT Cyber Security Challenge</h1>
+            <p>Team 1 - Student Portal</p>
+        </header>
+        <main>
+            <section class="login-section">
+                <h2>Portal Login</h2>
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Authentication servers are currently down for maintenance.');">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" value="Korisnik1" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password (e.g., Palacinki)" required>
+                    </div>
+                    <button type="submit" class="btn">Sign In</button>
+                </form>
+            </section>
+            <section class="hints">
+                <h3>System Status</h3>
+                <p>Welcome <b>Korisnik1</b>! All systems operational. Remember: Developers sometimes leave debug information in the application. Inspect your surroundings carefully.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

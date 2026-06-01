@@ -1,0 +1,34 @@
+client
+dev tun
+proto udp
+remote YOUR_SERVER_IP 1194
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+remote-cert-tls server
+auth SHA512
+ignore-unknown-option block-outside-dns
+verb 3
+route 10.10.0.0 255.255.0.0
+
+<ca>
+-----BEGIN CERTIFICATE-----
+# Paste CA certificate here
+-----END CERTIFICATE-----
+</ca>
+<cert>
+-----BEGIN CERTIFICATE-----
+# Paste Client certificate here
+-----END CERTIFICATE-----
+</cert>
+<key>
+-----BEGIN PRIVATE KEY-----
+# Paste Client private key here
+-----END PRIVATE KEY-----
+</key>
+<tls-crypt>
+-----BEGIN OpenVPN Static key V1-----
+# Paste TLS Crypt key here
+-----END OpenVPN Static key V1-----
+</tls-crypt>

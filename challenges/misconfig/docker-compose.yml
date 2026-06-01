@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  misconfig-team1:
+    build:
+      context: ./teams/team1
+      args:
+        FLAG_REDIS: ${FLAG_REDIS_1:-FEIT{team1_redis_noauth_flag_default}}
+        FLAG_MEMCACHED: ${FLAG_MEMCACHED_1:-FEIT{team1_memcached_flag_default}}
+    container_name: misconfig-team1
+    networks:
+      team1_net:
+        ipv4_address: 10.10.1.60
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  misconfig-team2:
+    build:
+      context: ./teams/team2
+      args:
+        FLAG_REDIS: ${FLAG_REDIS_2:-FEIT{team2_redis_noauth_flag_default}}
+        FLAG_MEMCACHED: ${FLAG_MEMCACHED_2:-FEIT{team2_memcached_flag_default}}
+    container_name: misconfig-team2
+    networks:
+      team2_net:
+        ipv4_address: 10.10.2.60
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  misconfig-team3:
+    build:
+      context: ./teams/team3
+      args:
+        FLAG_REDIS: ${FLAG_REDIS_3:-FEIT{team3_redis_noauth_flag_default}}
+        FLAG_MEMCACHED: ${FLAG_MEMCACHED_3:-FEIT{team3_memcached_flag_default}}
+    container_name: misconfig-team3
+    networks:
+      team3_net:
+        ipv4_address: 10.10.3.60
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  misconfig-team4:
+    build:
+      context: ./teams/team4
+      args:
+        FLAG_REDIS: ${FLAG_REDIS_4:-FEIT{team4_redis_noauth_flag_default}}
+        FLAG_MEMCACHED: ${FLAG_MEMCACHED_4:-FEIT{team4_memcached_flag_default}}
+    container_name: misconfig-team4
+    networks:
+      team4_net:
+        ipv4_address: 10.10.4.60
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  misconfig-team5:
+    build:
+      context: ./teams/team5
+      args:
+        FLAG_REDIS: ${FLAG_REDIS_5:-FEIT{team5_redis_noauth_flag_default}}
+        FLAG_MEMCACHED: ${FLAG_MEMCACHED_5:-FEIT{team5_memcached_flag_default}}
+    container_name: misconfig-team5
+    networks:
+      team5_net:
+        ipv4_address: 10.10.5.60
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  team1_net:
+    name: docker_ctf-team1
+    external: true
+  team2_net:
+    name: docker_ctf-team2
+    external: true
+  team3_net:
+    name: docker_ctf-team3
+    external: true
+  team4_net:
+    name: docker_ctf-team4
+    external: true
+  team5_net:
+    name: docker_ctf-team5
+    external: true

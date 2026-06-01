@@ -1,0 +1,138 @@
+version: "3.8"
+
+# FEIT CTF Core Infrastructure
+# Deploy with: docker compose up -d
+
+networks:
+  ctf-shared:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
+  ctf-team1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.1.0/24
+  ctf-team2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.2.0/24
+  ctf-team3:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.3.0/24
+  ctf-team4:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.4.0/24
+  ctf-team5:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.5.0/24
+
+services:
+  # ============================================================
+  # SCOREBOARD
+  # ============================================================
+  scoreboard:
+    build: ./scoreboard
+    container_name: ctf-scoreboard
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./scoreboard/data:/app/data
+    networks:
+      ctf-shared:
+        ipv4_address: 10.10.0.100
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=${SCOREBOARD_SECRET_KEY:-change_me_in_production}
+
+  # ============================================================
+  # TEAM WORKSPACES (VNC)
+  # ============================================================
+  vnc-team1:
+    image: consol/ubuntu-xfce-vnc:latest
+    container_name: vnc-team1
+    restart: unless-stopped
+    ports:
+      - "6901:6901"
+    networks:
+      ctf-team1:
+        ipv4_address: 10.10.1.10
+      ctf-shared:
+    environment:
+      - VNC_PW=${TEAM1_VNC_PASS:-team1vnc}
+      - VNC_RESOLUTION=1280x800
+    security_opt:
+      - no-new-privileges:true
+
+  vnc-team2:
+    image: consol/ubuntu-xfce-vnc:latest
+    container_name: vnc-team2
+    restart: unless-stopped
+    ports:
+      - "6902:6901"
+    networks:
+      ctf-team2:
+        ipv4_address: 10.10.2.10
+      ctf-shared:
+    environment:
+      - VNC_PW=${TEAM2_VNC_PASS:-team2vnc}
+      - VNC_RESOLUTION=1280x800
+    security_opt:
+      - no-new-privileges:true
+
+  vnc-team3:
+    image: consol/ubuntu-xfce-vnc:latest
+    container_name: vnc-team3
+    restart: unless-stopped
+    ports:
+      - "6903:6901"
+    networks:
+      ctf-team3:
+        ipv4_address: 10.10.3.10
+      ctf-shared:
+    environment:
+      - VNC_PW=${TEAM3_VNC_PASS:-team3vnc}
+      - VNC_RESOLUTION=1280x800
+    security_opt:
+      - no-new-privileges:true
+
+  vnc-team4:
+    image: consol/ubuntu-xfce-vnc:latest
+    container_name: vnc-team4
+    restart: unless-stopped
+    ports:
+      - "6904:6901"
+    networks:
+      ctf-team4:
+        ipv4_address: 10.10.4.10
+      ctf-shared:
+    environment:
+      - VNC_PW=${TEAM4_VNC_PASS:-team4vnc}
+      - VNC_RESOLUTION=1280x800
+    security_opt:
+      - no-new-privileges:true
+
+  vnc-team5:
+    image: consol/ubuntu-xfce-vnc:latest
+    container_name: vnc-team5
+    restart: unless-stopped
+    ports:
+      - "6905:6901"
+    networks:
+      ctf-team5:
+        ipv4_address: 10.10.5.10
+      ctf-shared:
+    environment:
+      - VNC_PW=${TEAM5_VNC_PASS:-team5vnc}
+      - VNC_RESOLUTION=1280x800
+    security_opt:
+      - no-new-privileges:true

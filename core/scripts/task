@@ -1,0 +1,165 @@
+You are helping me implement a legal university Capture The Flag exercise in attack/defense format for cybersecurity students.
+
+Important:
+This is an authorized university lab environment only.
+The target server is already installed and belongs to us.
+
+Server details:
+- Server IP: 192.168.183.123
+- OS: Ubuntu 22.04
+- Admin SSH user: joker
+- Admin access pattern: ssh joker@192.168.183.123
+- The joker user has sudo access and is used by faculty/admins.
+- Do not ask for or expose private SSH keys, passwords, VPN keys, or secrets.
+- Use placeholders for secrets, for example:
+  <SSH_KEY_PATH>, <ADMIN_PASSWORD>, <VPN_SECRET>, <TEAM_PASSWORD>.
+
+Goal:
+Implement a university CTF environment on the server 192.168.183.123.
+
+Context:
+- Around 25 students will participate.
+- Students will be split into about 5 teams, around 5 students per team.
+- Each team should get an isolated Docker-based vulnerable environment.
+- Students connect through OpenVPN using .ovpn files.
+- After connecting to VPN, students access their working desktop through VNC.
+- Students must not have sudo access.
+- Students must not have internet access from the challenge environment.
+- Teams defend their own vulnerable services and try to find flags in other teams’ containers.
+- All activity must stay inside the VPN/lab network.
+
+Flag format:
+- Flags should look like:
+  FEIT{example_flag_value}
+
+Example flag locations:
+- Web page/source code
+- MySQL database
+- SQL injection challenge
+- Hidden directory or file
+- Packet capture/Wireshark challenge
+- Misconfigured internal service
+
+Flag submission:
+- We need a simple flag submission/checking system.
+- Students submit flags through a web page or simple app.
+- The system should verify that the flag exists.
+- It should prevent fake flags, duplicate submissions, and basic cheating.
+- It should include team login, scoring, and logs.
+
+Your task:
+Create a practical implementation plan for this exact server.
+
+Please include:
+
+1. Architecture proposal
+   - Host server layout for 192.168.183.123
+   - Docker/container layout
+   - Suggested internal IP ranges
+   - VPN network design
+   - VNC/Desktop access design
+   - Team isolation model
+
+2. Safe connection assumptions
+   - Use:
+     ssh joker@192.168.183.123
+   - Do not request real passwords or private keys.
+   - Use placeholders where secrets are needed.
+   - Assume the admin will manually run the commands unless an automation script is provided.
+
+3. User and permission model
+   - joker admin user
+   - team users such as team1, team2, team3, team4, team5
+   - no sudo for students
+   - SSH/VNC/VPN access recommendations
+   - file permissions for flags and services
+
+4. Docker Compose design
+   - Example structure for 5 teams
+   - One or more vulnerable services per team
+   - Internal Docker networks
+   - How teams can access each other’s vulnerable services but not the host
+   - How to prevent container breakout risks as much as possible
+
+5. Challenge ideas
+   Create 5 beginner/intermediate-level challenge types suitable for students:
+   - Web flag
+   - SQL injection flag
+   - Hidden directory/file flag
+   - Packet/Wireshark flag
+   - Misconfigured service flag
+
+   For each challenge, explain:
+   - Learning objective
+   - Where the flag is stored
+   - How the service is deployed
+   - What the students are expected to discover
+   - How to make it fair and not too hard
+
+6. Flag management
+   - Recommended flag format
+   - How to generate unique flags
+   - Where to store the master flag list
+   - How to rotate/reset flags between events
+   - How to stop teams from changing or deleting their own flags unfairly
+
+7. Flag submission system
+   - Simple web app design
+   - Team login
+   - Flag validation
+   - Scoreboard
+   - Submission logs
+   - Duplicate prevention
+   - Suggested database schema
+   - Example minimal implementation approach
+
+8. Network/security controls
+   - UFW/iptables recommendations
+   - Docker network restrictions
+   - Preventing internet access for student containers
+   - Allowing only VPN access to challenge services
+   - Protecting the host server from students
+   - Keeping admin SSH available only for joker/admins
+
+9. Deployment steps for Ubuntu 22.04
+   Provide command outlines for:
+   - Updating the server
+   - Installing Docker and Docker Compose
+   - Installing/configuring OpenVPN
+   - Installing/configuring VNC or desktop access
+   - Creating team users
+   - Creating project folders
+   - Deploying Docker Compose stacks
+   - Starting the scoreboard
+   - Testing VPN, VNC, containers, and flags
+
+10. Backup and reset process
+   - How to backup configs and flags
+   - How to reset a team environment
+   - How to rebuild containers
+   - How to restore the scoreboard
+   - How to clean logs after the event if needed
+
+11. Operational plan during the CTF
+   - How admins monitor the event
+   - How to restart broken services
+   - How to handle cheating reports
+   - How to collect logs
+   - How to end the competition safely
+
+12. Deliverables
+   Provide:
+   - Text architecture diagram
+   - Suggested folder structure under /opt/feit-ctf
+   - Example docker-compose.yml skeleton
+   - Example firewall rules
+   - Example flag-checker database schema
+   - Example setup script skeleton
+   - Admin checklist
+   - Student instructions template
+
+Please write the response as a practical step-by-step implementation guide.
+
+Do not include instructions for attacking public systems.
+Do not include malware, persistence, stealth, credential theft, or real-world exploitation guidance.
+Keep everything isolated to the authorized server 192.168.183.123 and the VPN lab network.

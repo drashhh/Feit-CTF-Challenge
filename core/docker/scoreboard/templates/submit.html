@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FEIT CTF - Submit Flag</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #1a1a2e; color: #eee; }
+        .container { background: #16213e; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        h1 { text-align: center; color: #0f3460; background: #e94560; padding: 10px; border-radius: 5px; }
+        input[type="text"] { width: 100%; padding: 12px; margin: 8px 0; box-sizing: border-box; border: 1px solid #0f3460; border-radius: 4px; background: #1a1a2e; color: #eee; font-family: monospace; font-size: 14px; }
+        button { width: 100%; padding: 12px; margin-top: 15px; background: #e94560; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #c73e54; }
+        .flash { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .flash.error { background: #ff4444; color: white; }
+        .flash.success { background: #44ff44; color: black; }
+        .flash.warning { background: #ffaa00; color: black; }
+        .nav { text-align: center; margin-bottom: 20px; }
+        .nav a { color: #e94560; margin: 0 10px; text-decoration: none; }
+        .nav a:hover { text-decoration: underline; }
+        .team-badge { text-align: center; background: #0f3460; padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FEIT CTF</h1>
+        <div class="nav">
+            <a href="/scoreboard">Scoreboard</a>
+            <a href="/submit">Submit Flag</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div style="text-align:center;"><span class="team-badge">Logged in as: {{ team }}</span></div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <h2>Submit a Flag</h2>
+        <form method="POST">
+            <label>Flag:</label>
+            <input type="text" name="flag" placeholder="FEIT{...}" required autofocus>
+            <button type="submit">Submit Flag</button>
+        </form>
+
+        <p style="margin-top: 20px; color: #888; font-size: 0.9em;">
+            Flag format: <code>FEIT{...}</code><br>
+            You cannot submit your own team's flags.<br>
+            Duplicate submissions are not counted.
+        </p>
+
+        <div style="margin-top: 30px; background: #0f3460; padding: 15px; border-radius: 8px;">
+            <h3 style="color: #e94560; margin-top: 0; text-align: center;">Completed Challenges</h3>
+            {% if solved_challenges %}
+                <ul style="list-style-type: none; padding: 0;">
+                {% for challenge in solved_challenges %}
+                    <li style="padding: 8px; border-bottom: 1px solid #16213e; color: #44ff44;">
+                        ✅ {{ challenge }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p style="color: #888; font-style: italic; text-align: center;">No challenges completed yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

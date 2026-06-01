@@ -1,0 +1,88 @@
+services:
+  files-team1:
+    build: ./teams/team1
+    container_name: files-team1
+    restart: unless-stopped
+    networks:
+      team1_net:
+        ipv4_address: 10.10.1.40
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  files-team2:
+    build: ./teams/team2
+    container_name: files-team2
+    restart: unless-stopped
+    networks:
+      team2_net:
+        ipv4_address: 10.10.2.40
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  files-team3:
+    build: ./teams/team3
+    container_name: files-team3
+    restart: unless-stopped
+    networks:
+      team3_net:
+        ipv4_address: 10.10.3.40
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  files-team4:
+    build: ./teams/team4
+    container_name: files-team4
+    restart: unless-stopped
+    networks:
+      team4_net:
+        ipv4_address: 10.10.4.40
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  files-team5:
+    build: ./teams/team5
+    container_name: files-team5
+    restart: unless-stopped
+    networks:
+      team5_net:
+        ipv4_address: 10.10.5.40
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  team1_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.1.0/24
+  team2_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.2.0/24
+  team3_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.3.0/24
+  team4_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.4.0/24
+  team5_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.5.0/24

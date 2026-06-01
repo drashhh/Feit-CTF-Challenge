@@ -1,0 +1,69 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a0a0c;
+    color: #e0e0e0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: #16161a;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-top: 4px solid #007bff;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+}
+
+header h1 {
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+.status-badge {
+    background: #28a745;
+    color: white;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.challenge-info h2 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.hint {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #ffc107;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+}
+
+.instructions {
+    text-align: left;
+    line-height: 1.6;
+}
+
+.instructions hr {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 1.5rem 0;
+}
+
+footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #666;
+}

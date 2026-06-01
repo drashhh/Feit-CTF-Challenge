@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEIT Network Forensics Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>FEIT Cyber Security Challenge</h1>
+    </div>
+    <div class="container">
+        <h2>Challenge 4: Packet Analysis</h2>
+        <p>A suspicious network capture was recorded on our internal network. Our sensors detected unusual activity involving an administrative login and some DNS queries.</p>
+        
+        <div class="pcap-box">
+            <p><strong>Artifact:</strong> capture.pcap</p>
+            <a href="/capture.pcap" class="download-btn">Download Capture File</a>
+        </div>
+
+        <div class="hint-section">
+            <h3>Investigation Hints</h3>
+            <p>Analyze the network capture carefully. Look for cleartext protocols.</p>
+            <p>Recommended Wireshark Filters:</p>
+            <ul>
+                <li><code>http</code> - To find web traffic and POST data.</li>
+                <li><code>dns</code> - To find domain name queries and TXT records.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2026 FEIT Cyber Security. Authorized access only.
+    </div>
+</body>
+</html>

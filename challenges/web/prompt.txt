@@ -1,0 +1,32 @@
+I have a CTF_Web_Challenge project with these files: docker-compose.yml, deploy.sh, generate_flags.sh, Dockerfile, nginx.conf, index.html, style.css, README.md, and a teams/team1 folder.
+
+Goal:
+I want ONLY korisnik1 / team1 to have the web service. I do NOT want korisnik2, korisnik3, korisnik4, or korisnik5 to have any web service/container.
+
+Please do the following safely:
+
+1. Inspect the project structure.
+2. Modify docker-compose.yml so that it only creates one web container:
+   - service/container name: web-team1
+   - use only teams/team1 as the build context
+   - network: team1_net
+   - static IP: 10.10.1.20
+   - do not create web-team2, web-team3, web-team4, or web-team5
+3. Modify deploy.sh so it only verifies and prints info for Team 1, not teams 1-5.
+4. Modify generate_flags.sh so it only generates flags for Team 1 / teams/team1.
+5. Make sure the HTML flag remains inside teams/team1/index.html as an HTML comment.
+6. Make sure the HTTP header flag remains inside teams/team1/nginx.conf as X-Secret-Flag.
+7. Do not delete the other users from Linux. Only remove/disable their web service containers.
+8. After editing, run:
+   docker compose down
+   sudo ./deploy.sh
+9. Verify that only web-team1 is running:
+   docker ps
+10. Test the flags with:
+   curl -s http://10.10.1.20 | grep "FEIT{"
+   curl -I http://10.10.1.20 | grep "X-Secret-Flag"
+
+Important:
+Before changing files, show me what you are going to edit.
+After changing files, show me the final contents of docker-compose.yml, deploy.sh, and generate_flags.sh.
+Do not create services for team2-team5.

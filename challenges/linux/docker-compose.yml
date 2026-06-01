@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  linux-team1:
+    build: .
+    container_name: linux-team1
+    restart: unless-stopped
+    networks:
+      team1_net:
+        ipv4_address: 10.10.1.70
+    cap_add:
+      - SYS_PTRACE
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:false
+
+  linux-team2:
+    build: .
+    container_name: linux-team2
+    restart: unless-stopped
+    networks:
+      team2_net:
+        ipv4_address: 10.10.2.70
+    cap_add:
+      - SYS_PTRACE
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:false
+
+  linux-team3:
+    build: .
+    container_name: linux-team3
+    restart: unless-stopped
+    networks:
+      team3_net:
+        ipv4_address: 10.10.3.70
+    cap_add:
+      - SYS_PTRACE
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:false
+
+  linux-team4:
+    build: .
+    container_name: linux-team4
+    restart: unless-stopped
+    networks:
+      team4_net:
+        ipv4_address: 10.10.4.70
+    cap_add:
+      - SYS_PTRACE
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:false
+
+  linux-team5:
+    build: .
+    container_name: linux-team5
+    restart: unless-stopped
+    networks:
+      team5_net:
+        ipv4_address: 10.10.5.70
+    cap_add:
+      - SYS_PTRACE
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:false
+    
+networks:
+  team1_net:
+    external: true
+    name: docker_ctf-team1
+  team2_net:
+    external: true
+    name: docker_ctf-team2
+  team3_net:
+    external: true
+    name: docker_ctf-team3
+  team4_net:
+    external: true
+    name: docker_ctf-team4
+  team5_net:
+    external: true
+    name: docker_ctf-team5
